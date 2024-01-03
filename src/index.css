@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.scrollbar-thin::-webkit-scrollbar {
+  display: block;
+  width: 4px !important;
+  height: 5px !important;
+  border-radius: 50px;
+}
+.active {
+  background-color: #eeeeee;
+  border-radius: 8px;
+  color: black;
+}
+/* .active::before {
+  content: url('./assets/activeItem.svg');
+  background-color: transparent;
+} */
+.header {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background-image: url('./assets/dashheading.svg'),
+    linear-gradient(91deg, rgb(0, 219, 255) 0%, rgb(0, 255, 224) 47.92%);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 150px;
+}
+.box {
+  background-image: url('./assets/background.svg');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 120px;
+  width: 100%;
+  flex: 1 1 auto;
+  padding: 16px;
+}
+
+.yellow-shadow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 60%;
+  width: 1px;
+  background-color: rgb(255, 201, 96);
+  transform: translateY(-50%);
+  box-shadow: rgb(255, 201, 96) 6px 0px 8px 1px;
+}
+.aqua-shadow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 60%;
+  width: 1px;
+  background-color: rgb(0, 255, 224);
+  transform: translateY(-50%);
+  box-shadow: rgb(0, 255, 224) 6px 0px 8px 1px;
+}
+.black-shadow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 60%;
+  width: 1px;
+  background-color: rgb(144, 144, 144);
+  transform: translateY(-50%);
+  box-shadow: rgb(144, 144, 144) 6px 0px 8px 1px;
+}
+.red-shadow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 60%;
+  width: 1px;
+  background-color: rgb(240, 12, 12);
+  transform: translateY(-50%);
+  box-shadow: rgb(240, 12, 12) 6px 0px 8px 1px;
+}
+@media screen and (min-width: 768px) {
+  .header {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 32px 24px;
+
+    border-radius: 16px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .header {
+    padding: 32px 24px;
+    border-radius: 16px;
+  }
+  .box {
+    width: 25%;
+  }
+}
+.swap_btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 80px;
+  font-size: 14px;
+  background: linear-gradient(
+    91deg,
+    rgb(0, 219, 255) 0%,
+    rgb(0, 255, 224) 47.92%
+  );
+}
