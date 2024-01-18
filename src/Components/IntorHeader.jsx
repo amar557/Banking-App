@@ -1,11 +1,11 @@
 import NSymbol from '../assets/N.svg';
-export default function IntroHeader() {
+export default function IntroHeader({ page }) {
   return (
     <div className="header lg:px-4 xl:px-6 ">
       <div className="font-jakarta">
         <div className="text-[12px] font-semibold">payremit wallet</div>
         <div className="sm:text-2xl md:text-3xl lg:text-4xl font-bold">
-          hello! alexander
+          {page}
         </div>
       </div>
       <div>

@@ -6,8 +6,20 @@ import { BsStars } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlineLogout } from 'react-icons/md';
-import { IoIosArrowBack } from 'react-icons/io';
-
+import {
+  IoIosArrowBack,
+  IoIosArrowForward,
+  IoMdArrowDropdown,
+  IoMdArrowDropup,
+} from 'react-icons/io';
+import { IoWallet } from 'react-icons/io5';
+import { FaServicestack } from 'react-icons/fa';
+import { BsVoicemail } from 'react-icons/bs';
+import { IoWifiOutline } from 'react-icons/io5';
+import { MdBolt } from 'react-icons/md';
+import { MdOutlineComputer } from 'react-icons/md';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 const linksData = [
   {
     icon: <CiGrid41 />,
@@ -17,7 +29,7 @@ const linksData = [
   {
     icon: <CiWallet />,
     link: 'wallet',
-    to: '/aksjf',
+    to: 'wallet',
   },
   {
     icon: <FaArrowUp />,
@@ -31,13 +43,26 @@ const linksData = [
   },
   {
     icon: <FiClock />,
-    link: 'services',
-    to: 'skjadskfj',
+    link: 'transiction',
+
+    subMenu: true,
+    subMenuItems: [
+      { title: 'wallet transictions', icon: <IoWallet /> },
+      { title: 'services transictions', icon: <FaServicestack /> },
+    ],
   },
   {
     icon: <BsStars />,
-    link: 'reviews',
-    to: 'kdjsfkaj',
+    link: 'services',
+
+    subMenu: true,
+
+    subMenuItems: [
+      { title: 'airtime', icon: <BsVoicemail /> },
+      { title: 'internet', icon: <IoWifiOutline /> },
+      { title: 'electricity', icon: <MdBolt /> },
+      { title: 'tv subscription', icon: <MdOutlineComputer /> },
+    ],
   },
 ];
 
@@ -76,10 +101,10 @@ function NavControlerButton({ handleNavbar, isOpen }) {
     <button
       onClick={handleNavbar}
       className={`fixed ${
-        isOpen ? 'top-[35%] left-[16%]' : 'top-[35%] left-[6%]'
-      }  md:flex items-center justify-center hidden  z-50 bg-[#00ffe0] h-6 w-6 transition-all duration-300 ring-4 ring-white rounded-full `}
+        isOpen ? 'top-[20%] left-72' : 'top-[20%] left-20'
+      }  md:flex items-center justify-center hidden  z-50 bg-[#00ffe0] h-8 w-8 transition-all duration-300 ring-4 ring-white rounded-full `}
     >
-      <IoIosArrowBack />
+      {isOpen ? <IoIosArrowBack /> : <IoIosArrowForward />}
     </button>
   );
 }
@@ -99,12 +124,14 @@ function MenuList({ isOpen }) {
   return (
     <div className="mx-auto xs:me-auto my-4">
       {linksData.map((data, i) => (
-        <Link
+        <Links
           link={data.link}
           key={i}
           icon={data.icon}
           to={data.to}
           isOpen={isOpen}
+          subMenu={data.subMenu}
+          subMenuItems={data.subMenuItems}
         />
       ))}
     </div>
@@ -115,7 +142,7 @@ function OthersList({ isOpen }) {
   return (
     <div className="mx-auto xs:me-auto my-4">
       {othersData.map((data, i) => (
-        <Link
+        <Links
           link={data.link}
           key={i}
           icon={data.icon}
@@ -127,19 +154,70 @@ function OthersList({ isOpen }) {
   );
 }
 
-function Link({ icon, link, to, isOpen }) {
+function Links({ icon, link, to, isOpen, subMenu, subMenuItems }) {
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  function ToggleMenu() {
+    return setSubMenuOpen((open) => !open);
+  }
   return (
-    <NavLink
-      to={to}
-      className="flex items-center gap-4 text-xl my-[15px] text-[#909090] p-3 hover:bg-[#eeeeee] transition-all duration-200 hover:rounded-lg "
-    >
-      <span className="text-2xl">{icon}</span>
-      {isOpen && (
-        <span className="capitalize md:block hidden grow w-full pe-11">
-          {link}
-        </span>
+    <>
+      {subMenu ? (
+        <div className="flex flex-col">
+          <NavLink
+            onClick={ToggleMenu}
+            to={to}
+            className="flex items-center gap-4 text-xl my-[15px] text-[#909090] p-3 hover:bg-[#eeeeee] transition-all duration-200 hover:rounded-lg"
+          >
+            <span className="text-2xl">{icon}</span>
+            {isOpen && (
+              <>
+                <span className="capitalize md:block hidden grow w-full pe-11">
+                  {link}
+                </span>
+                <span className="md:block hidden">
+                  {subMenuOpen ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+                </span>
+              </>
+            )}
+          </NavLink>
+          {subMenuOpen && (
+            <>
+              <span className="block">
+                {subMenuItems.map((item, i) => (
+                  <>
+                    {isOpen ? (
+                      <div
+                        key={i}
+                        className="bg-transparent md:block hidden hover:bg-white hover:cursor-pointer transition-all py-[10px] px-2 text-xl font-jakarta mb-1 ms-3 rounded-lg"
+                      >
+                        <Link>{item.title}</Link>
+                      </div>
+                    ) : (
+                      <div>
+                        <Link>{item.icon}</Link>
+                      </div>
+                    )}
+                  </>
+                ))}
+              </span>
+            </>
+          )}
+        </div>
+      ) : (
+        <NavLink
+          to={to}
+          className="flex items-center gap-4 text-xl my-[15px] text-[#909090] p-3 hover:bg-[#eeeeee] transition-all duration-200 hover:rounded-lg "
+        >
+          <span className="text-2xl">{icon}</span>
+          {isOpen && (
+            <span className="capitalize md:block hidden grow w-full pe-11">
+              {link}
+            </span>
+          )}
+        </NavLink>
       )}
-    </NavLink>
+    </>
   );
 }
+
 export default NavigationBar;

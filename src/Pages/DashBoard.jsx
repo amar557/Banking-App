@@ -6,7 +6,7 @@ import SwapCrypto from '../DashboardComponents/SwapCrypto';
 function DashBoard() {
   return (
     <div className="text-xl uppercase block overflow-y-auto  w-[95%] relative  mx-auto ">
-      <IntroHeader />
+      <IntroHeader page="hello! alexander" />
       <div className="flex xmd:flex-row flex-col gap-6 mt-5">
         <div className="flex flex-col  xmd:w-3/5 w-full shrink basis-auto grow ">
           <Services />
