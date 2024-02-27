@@ -5,12 +5,18 @@ import lightModeImg from '../assets/download.png';
 import nightModeImg from '../assets/nightMode.png';
 import ProfilePic from '../assets/profile.jpg';
 import { IoIosArrowBack } from 'react-icons/io';
+import Notification from './Notification';
 function Header() {
+  const [showNotification, setShowNotification] = useState(false);
+  function handlNotificationBar() {
+    setShowNotification((data) => !data);
+  }
   return (
-    <div className="grow w-full p-[30px] flex justify-end items-center bg-white gap-x-5 fixed right-0 top-0 z-20">
+    <div className="grow w-full p-[30px] flex justify-end items-center bg-white gap-x-5 fixed right-0 top-0 z-20 ">
       <LightModeButton />
       <Profile />
-      <NotificationButton />
+      <NotificationButton handlNotificationBar={handlNotificationBar} />
+      {showNotification && <Notification />}
     </div>
   );
 }
@@ -69,9 +75,12 @@ function Profile() {
   );
 }
 
-function NotificationButton() {
+function NotificationButton({ handlNotificationBar }) {
   return (
-    <button className="bg-[#eeeeee]  h-10 min-w-10 rounded-[14px] p-1 flex items-center justify-center text-xl">
+    <button
+      className="bg-[#eeeeee]  h-10 min-w-10 rounded-[14px] p-1 flex items-center justify-center text-xl"
+      onClick={handlNotificationBar}
+    >
       <GoBellFill />
     </button>
   );

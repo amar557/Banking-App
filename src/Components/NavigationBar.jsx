@@ -82,7 +82,7 @@ const othersData = [
 function NavigationBar({ handleNavbar, isOpen }) {
   return (
     <div
-      className={`pt-9 px-1 xs:pt-14 pb-10 bg-[#f9f9f9] overflow-x-hidden scrollbar-track-transparent scrollbar-thumb-black scrollbar-thin overflow-y-auto ${
+      className={`pt-9 px-1 xs:pt-14 pb-10 bg-[#f9f9f9] overflow-x-hidden scrollbar-track-transparent scrollbar-[2px] scrollbar-thumb-black scrollbar-thin overflow-y-auto ${
         isOpen ? ' md:w-[300px]' : ' md:w-[100px]'
       }  h-screen transition-all  duration-300 z-30 fixed xs:px-6 flex items-center  flex-col `}
     >
@@ -166,7 +166,7 @@ function Links({ icon, link, to, isOpen, subMenu, subMenuItems }) {
           <NavLink
             onClick={ToggleMenu}
             to={to}
-            className="flex items-center gap-4 text-xl my-[15px] text-[#909090] p-3 hover:bg-[#eeeeee] transition-all duration-200 hover:rounded-lg"
+            className="flex items-center justify-center gap-4 text-xl my-[15px] text-[#909090] p-3 hover:bg-[#eeeeee] transition-all duration-200 hover:rounded-lg"
           >
             <span className="text-2xl">{icon}</span>
             {isOpen && (
@@ -193,8 +193,10 @@ function Links({ icon, link, to, isOpen, subMenu, subMenuItems }) {
                         <Link>{item.title}</Link>
                       </div>
                     ) : (
-                      <div>
-                        <Link>{item.icon}</Link>
+                      <div className=" m-2 grid place-items-center text-lg ">
+                        <Link className="text-2xl p-2 hover:rounded-lg hover:bg-white text-[#999999]">
+                          {item.icon}
+                        </Link>
                       </div>
                     )}
                   </>
