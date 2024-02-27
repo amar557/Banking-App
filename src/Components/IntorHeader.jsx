@@ -1,5 +1,12 @@
+import { useState } from 'react';
 import NSymbol from '../assets/N.svg';
 export default function IntroHeader({ page }) {
+  const [value, setValue] = useState('mgt');
+  // console.log(value);
+  function manageOptions(e) {
+    // console.log(e.target.value);
+    setValue(e.target.value);
+  }
   return (
     <div className="header lg:px-4 xl:px-6 ">
       <div className="font-jakarta">
@@ -18,23 +25,23 @@ export default function IntroHeader({ page }) {
           <select
             name=""
             id=""
-            value={'btc'}
+            onChange={manageOptions}
             className="rounded-lg active:outline-0 border-0 focus:outline-0 text-black bg-[#f9f9f9] p-2 h-5 "
           >
             <option
-              value="kjadskj"
+              value="btc"
               className="uppercase text-black text-sm border-0"
             >
               btc
             </option>
             <option
-              value="kjsakd"
+              value="mgn"
               className="uppercase text-black text-sm border-0"
             >
               mgn
             </option>
             <option
-              value="jdsk"
+              value="usd"
               className="uppercase text-black text-sm border-0"
             >
               usd
