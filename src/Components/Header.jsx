@@ -4,7 +4,6 @@ import { GoBellFill } from 'react-icons/go';
 import lightModeImg from '../assets/download.png';
 import nightModeImg from '../assets/nightMode.png';
 import ProfilePic from '../assets/profile.jpg';
-import { IoIosArrowBack } from 'react-icons/io';
 import Notification from './Notification';
 function Header() {
   const [showNotification, setShowNotification] = useState(false);
